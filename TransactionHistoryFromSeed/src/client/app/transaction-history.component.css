@@ -1,0 +1,42 @@
+﻿/*needed to vertically center navbar-btn elements default is 15 so they appear too high*/
+
+.component-container {
+	font-family: tahoma;
+	font-size: 1.2em;
+	margin: 0;
+	padding-top: 75px;
+}
+
+.navbar button {
+ margin-top: 22px;
+}
+
+/*found in bootstrap.css:*/
+
+/*.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #f9f9f9;
+}*/
+
+/*for zebra stripe in table*/
+.odd {
+	 background-color: #f9f9f9;
+}
+
+/*table column styles*/
+
+.jha-text {
+	text-align: left;
+}
+
+.jha-date {
+	text-align: center;
+}
+
+.jha-money {
+	text-align: right;
+}
+
+.jha-comment {
+	text-align: left;
+	color: blue;
+}

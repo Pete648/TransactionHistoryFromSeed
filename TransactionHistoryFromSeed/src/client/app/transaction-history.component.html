@@ -1,0 +1,176 @@
+﻿<div class="container component-container">
+
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<h5 class="navbar-brand">Transaction History</h5>
+			</div>
+			<div>
+				<!--(click)="view.showFilter = !view.showFilter"-->
+				<button type="button" class="btn navbar-btn active" title="Show Inputs"
+				        data-toggle="button" aria-pressed="True"
+				        (click)="view.showFilter = !view.showFilter"
+				        aria-expanded="true" aria-controls="inputsCard">
+					<span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+				</button>
+				<!--<button type="button" class="btn navbar-btn pull-left" title="Show Inputs"
+				            data-toggle="collapse" data-target="#inputsCard"
+				            aria-expanded="true" aria-controls="inputsCard">
+					<span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+				</button>-->
+				<button type="button" class="btn navbar-btn" title="Toggle Detail Mode">
+					<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+				</button>
+				<button type="button" class="btn navbar-btn" title="Print">
+					<span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+				</button>
+				<button type="button" class="btn navbar-btn" title="Email Document">
+					<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+				</button>
+			</div>
+		</div>
+	</nav>
+
+	<div class="row">
+		<div class="card col-md-2" [hidden]="!view.showFilter">
+
+			<div class="card-header">
+				<!--<h3>Search</h3>-->
+
+				<div class="btn-toolbar" role="toolbar">
+					<div class="btn-group" role="group">
+
+						<button type="button" class="btn navbar-btn" aria-label="Left Align" data-toggle="button" aria-pressed="false" autocomplete="off"
+						        (click)="view.showAdvanced = !view.showAdvanced" title="Advanced Search">
+							<span class="glyphicon glyphicon-expand" aria-hidden="true"></span>
+						</button>
+						<button type="button" class="btn navbar-btn" aria-label="Left Align" data-toggle="button"
+						        aria-pressed="false" autocomplete="off" (click)="view.showDrafts = !view.showDrafts"
+						        [disabled]="!view.showAdvanced" title="Drafts Search">
+							<span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span>
+						</button>
+						<button type="button" class="btn navbar-btn" aria-label="Left Align" autocomplete="off"
+						        (click)="getMessages()" title="Select Matches">
+							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+						</button>
+					</div>
+				</div>
+
+			</div>
+			<div class="card-block">
+
+				<div class="form-group">
+					<select class="form-control" autofocus><option>All records</option></select>
+				</div>
+
+				<div class="form-group">
+					<label for="fromDate" class="control-label">From Date:</label>
+					
+					<div class="input-group date" data-provide="datepicker">
+						<input type="text" class="form-control" [(ngModel)]="toolbar.fromDatePicker" data-date-format="yyyy-mm-dd">
+						<div class="input-group-addon">
+							<span class="glyphicon glyphicon-th"></span>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="fromDate" class="control-label">To Date:</label>
+					<div class="input-group date" data-provide="datepicker">
+						<input type="text" class="form-control" [(ngModel)]="toolbar.toDatePicker">
+						<div class="input-group-addon">
+							<span class="glyphicon glyphicon-th"></span>
+						</div>
+					</div>
+				</div>
+
+				<div [hidden]="!view.showAdvanced">
+					<div class="form-group">
+						<label for="transactionType" class="control-label">Type:</label>
+						<select id="transactionType" class="form-control"><option>All Transactions</option></select>
+					</div>
+
+					<div [hidden]="!view.showDrafts">
+						<div class="form-group">
+							<label for="transactionType" class="control-label">Drafts From:</label>
+							<input type=number class="form-control" id=draftFrom size="13" maxlength="13" placeholder="0" [disabled]="!view.showDrafts"/>
+						</div>
+
+						<div class="form-group">
+							<label for="transactionType" class="control-label">Drafts To:</label>
+							<input type="number" class="form-control" id="draftTo" size="13" maxlength="13" placeholder="999999" [disabled]="!view.showDrafts"/>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="transactionType" class="control-label">Amount Search:</label>
+						<select class="form-control" [(ngModel)]="toolbar.searchAmountType">
+							<option value="0">None</option>
+							<option value="1">Balance Change</option>
+							<option value="2">Transaction Amount</option>
+						</select>
+					</div>
+
+					<div [hidden]="toolbar.searchAmountType == 0">
+						<div class="form-group">
+							<label for="transactionType" class="control-label">Amt:</label>
+							<input type="number" class="form-control" size="13" maxlength="13" placeholder="0.00" [disabled]="toolbar.searchAmountType == 0"/>
+						</div>
+
+						<div class="form-group">
+							<label for="transactionType" class="control-label">Var +/-:</label>
+							<input type="number" class="form-control" size="13" maxlength="13" placeholder="0.00" [disabled]="toolbar.searchAmountType == 0"/>
+						</div>
+					</div>
+
+				</div> <!--advanced collapse div-->
+			</div> <!--card block-->
+		</div> <!--card-->
+
+		<div class="card col-md-10">
+			<!--<h3 class="card-header">Matches</h3>-->
+			<div class="card-block">
+
+				<table class="table table-condensed table-hover">
+					<thead>
+						<tr class="jha-column-header">
+							<th class="jha-date jha-column-heading">Post Date</th>
+							<th class="jha-text jha-column-heading">ID</th>
+							<th class="jha-date jha-column-heading">Eff Date</th>
+							<th class="jha-text jha-column-heading">Transaction</th>
+							<th class="jha-money jha-column-heading">Trans Amt</th>
+							<th class="jha-money jha-column-heading">Balance Chge</th>
+							<th class="jha-money jha-column-heading">Int/Pnlty</th>
+							<th class="jha-money jha-column-heading">Fees</th>
+							<th class="jha-money jha-column-heading">New Balance</th>
+							<th class="jha-text jha-column-heading">Description</th>
+						</tr>
+					</thead>
+					<tbody *ngFor="let message of messages.$items; let index = index" [ngSwitch]="message.CmtFlag" [class.odd]="index%2 == 1">
+						<tr *ngSwitchDefault>
+							<td class="jha-date">{{message.PostDate | jhaDateString }}</td>
+							<td class="jha-text">{{message.IDType == '0' ? 'S' : 'L'}} {{message.ID}}</td>
+							<td class="jha-date">{{message.EffDate | jhaDateString}}</td>
+							<td class="jha-text">{{message.Tran }}</td>
+							<td class="jha-money">{{message.TranAmount | jhaMoney | number:'1.2-2' }}</td>
+							<td class="jha-money">{{message.BalChg | jhaMoney | number:'1.2-2' }}</td>
+							<td class="jha-money">{{message.IntPen | jhaMoney | number:'1.2-2' }}</td>
+							<td class="jha-money">{{message.Fee | jhaMoney | number:'1.2-2' }}</td>
+							<td class="jha-money">{{message.NewBal | jhaMoney | number:'1.2-2' }}</td>
+							<td class="jha-text">{{message.description}}</td>
+						</tr>
+<!--						<tr [ngSwitchWhen]="1">-->
+						<tr *ngSwitchCase="'1'">
+							<td colspan="3"></td>
+							<td colspan="7" class="jha-comment">{{message.Comment}}</td>
+						</tr>
+					</tbody>
+
+				</table>
+
+			</div> <!--card block-->
+		</div>  <!--card-->
+
+
+	</div> <!--row-->
+</div>		<!--container-->

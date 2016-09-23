@@ -98,15 +98,16 @@
     <Content Include="protractor.conf.js" />
     <Content Include="src\client\app\about\about.component.css" />
     <Content Include="src\client\app\about\about.component.html" />
-    <Content Include="src\client\app\app.component.html" />
     <Content Include="src\client\app\home\home.component.css" />
     <Content Include="src\client\app\home\home.component.html" />
     <Content Include="src\client\app\shared\navbar\navbar.component.css" />
     <Content Include="src\client\app\shared\navbar\navbar.component.html" />
     <Content Include="src\client\app\shared\toolbar\toolbar.component.css" />
     <Content Include="src\client\app\shared\toolbar\toolbar.component.html" />
+    <Content Include="src\client\app\transaction-history.component.html" />
     <Content Include="src\client\assets\svg\more.svg" />
     <Content Include="src\client\css\main.css" />
+    <Content Include="src\client\app\transaction-history.component.css" />
     <Content Include="src\client\index.html" />
     <Content Include="test-config.js" />
     <Content Include="test-main.js" />
@@ -124,19 +125,22 @@
     <TypeScriptCompile Include="src\client\app\about\about.module.ts" />
     <TypeScriptCompile Include="src\client\app\about\about.routes.ts" />
     <TypeScriptCompile Include="src\client\app\about\index.ts" />
-    <TypeScriptCompile Include="src\client\app\app.component.e2e-spec.ts" />
-    <TypeScriptCompile Include="src\client\app\app.component.spec.ts" />
-    <TypeScriptCompile Include="src\client\app\app.component.ts" />
+    <TypeScriptCompile Include="src\client\app\transaction-history.component.ts" />
+    <TypeScriptCompile Include="src\client\app\transaction-history.component.e2e-spec.ts" />
+    <TypeScriptCompile Include="src\client\app\transaction-history.component.spec.ts" />
     <TypeScriptCompile Include="src\client\app\app.module.ts" />
     <TypeScriptCompile Include="src\client\app\app.routes.ts" />
+    <TypeScriptCompile Include="src\client\app\episys-server.service.ts" />
     <TypeScriptCompile Include="src\client\app\home\home.component.e2e-spec.ts" />
     <TypeScriptCompile Include="src\client\app\home\home.component.spec.ts" />
     <TypeScriptCompile Include="src\client\app\home\home.component.ts" />
     <TypeScriptCompile Include="src\client\app\home\home.module.ts" />
     <TypeScriptCompile Include="src\client\app\home\home.routes.ts" />
     <TypeScriptCompile Include="src\client\app\home\index.ts" />
+    <TypeScriptCompile Include="src\client\app\jha.pipe.ts" />
     <TypeScriptCompile Include="src\client\app\main-prod.ts" />
     <TypeScriptCompile Include="src\client\app\main.ts" />
+    <TypeScriptCompile Include="src\client\app\mock-episys-server.service.ts" />
     <TypeScriptCompile Include="src\client\app\shared\config\env.config.ts" />
     <TypeScriptCompile Include="src\client\app\shared\index.ts" />
     <TypeScriptCompile Include="src\client\app\shared\name-list\index.ts" />
@@ -148,6 +152,7 @@
     <TypeScriptCompile Include="src\client\app\shared\toolbar\index.ts" />
     <TypeScriptCompile Include="src\client\app\shared\toolbar\toolbar.component.ts" />
     <TypeScriptCompile Include="src\client\app\system-config.ts" />
+    <TypeScriptCompile Include="src\client\app\transaction-history.service.ts" />
     <TypeScriptCompile Include="tools\config.ts" />
     <TypeScriptCompile Include="tools\config\project.config.ts" />
     <TypeScriptCompile Include="tools\config\seed.config.interfaces.ts" />
@@ -229,6 +234,7 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

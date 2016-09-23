@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <base href="<%= APP_BASE %>">
@@ -6,13 +6,22 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title><%= APP_TITLE %></title>
   <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- inject:css -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<style>
+		body.jha-body {
+			font-family: tahoma;
+			font-size: 1.4em;
+			margin: 0;
+			padding-top: 75px;
+		}
+	</style>
+	<!-- inject:css -->
   <!-- endinject -->
 </head>
-<body>
+<body">
 
-  <sd-app>Loading...</sd-app>
+  <transaction-history>Loading...</transaction-history>
 
   <script>
   // Fixes undefined module function in SystemJS bundle
