@@ -59,6 +59,11 @@ export class TransactionHistoryComponent implements OnInit, AfterViewInit {
 
 		var toolbar = this.toolbar;
 
+		// it appears that somewhere in bootstrap-datepicker a datepicker function
+		// is added to our elements that have the data-provide="datepicker" attribute
+		// calling that method appears to be the only way to set properties on the
+		// datepicker
+
 		$('#fromDate').datepicker({ autoclose: true });
 		$('#fromDate').datepicker().on('changeDate', e => toolbar.setFromDate(e.date));
 		$('#fromDate').datepicker('update', toolbar.fromDate);
