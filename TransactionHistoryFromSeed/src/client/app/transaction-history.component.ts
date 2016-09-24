@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
-import { OnInit }   from '@angular/core';
+import { Component }		from '@angular/core';
+import { OnInit }			from '@angular/core';
+import { AfterViewInit }	from '@angular/core';
+import { ViewChild }		from '@angular/core';
+
 import { Config} from './shared/index';
 
 import { TransactionHistoryService } from './transaction-history.service';
@@ -11,24 +14,25 @@ class View {
 }
 
 class Toolbar {
-    fromDate: String = this.getFormatedDate(new Date(), false);
+    fromDate: String = this.getFormatedDate(new Date());
     toDate: String = this.fromDate;
-    fromDatePicker: String = this.getFormatedDate(new Date(), true);
-    toDatePicker: String = this.fromDatePicker;
 
     searchAmountType: number = 0;
 
-    getFormatedDate(date: Date, datePicker: Boolean): String {
+	setFromDate(date: Date): void {
+		this.fromDate = this.getFormatedDate(date);
+	}
+
+	setToDate(date: Date): void {
+		this.toDate = this.getFormatedDate(date);
+	}
+
+    getFormatedDate(date: Date /*, datePicker: Boolean*/): String {
         let day = date.getDate();
         let month = date.getMonth() + 1;
         let year = date.getFullYear();
 
-        if (datePicker) {
-            return [this.pad(month, 2), this.pad(day, 2), year].join("/");
-        }
-        else {
-            return [year, this.pad(month, 2), this.pad(day, 2)].join(":");
-        }
+		return [this.pad(month, 2), this.pad(day, 2), year].join("/");
     }
 
     pad(num: number, size: number): String {
@@ -40,17 +44,29 @@ class Toolbar {
 @Component({
   moduleId: module.id,
   selector: 'transaction-history',
-//  templateUrl: 'app.component.html',
 	templateUrl: 'transaction-history.component.html',
 	styleUrls: ['transaction-history.component.css'],
 	providers: [TransactionHistoryService]      // only used in this component
 })
 
-export class TransactionHistoryComponent implements OnInit{
+export class TransactionHistoryComponent implements OnInit, AfterViewInit {
 	constructor(private transactionHistoryService: TransactionHistoryService) {
 		console.log('Environment config', Config);
 	}
+
 	ngOnInit(): void { this.getMessages(); }
+	ngAfterViewInit(): void {
+
+		var toolbar = this.toolbar;
+
+		$('#fromDate').datepicker({ autoclose: true });
+		$('#fromDate').datepicker().on('changeDate', e => toolbar.setFromDate(e.date));
+		$('#fromDate').datepicker('update', toolbar.fromDate);
+
+		$('#toDate').datepicker({ autoclose: true });
+		$('#toDate').datepicker().on('changeDate', e => toolbar.setToDate(e.date));
+		$('#toDate').datepicker('update', toolbar.toDate);
+	}
 
 	view = new View();
 	toolbar = new Toolbar();

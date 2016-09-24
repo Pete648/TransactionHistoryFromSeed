@@ -6,21 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title><%= APP_TITLE %></title>
   <meta name="description" content="">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<style>
-		body.jha-body {
-			font-family: tahoma;
-			font-size: 1.4em;
-			margin: 0;
-			padding-top: 75px;
-		}
-	</style>
-	<!-- inject:css -->
+  <!-- inject:css -->
   <!-- endinject -->
 </head>
 <body">
-
   <transaction-history>Loading...</transaction-history>
 
   <script>
@@ -50,6 +41,14 @@
     });
   </script>
   <% } %>
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('#pickyDate').datepicker({
+				format: "dd/mm/yyyy"
+			});
+		});
+	</script>
 
 </body>
 </html>
