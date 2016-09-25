@@ -32,7 +32,7 @@
 	</nav>
 
 	<div class="row">
-		<div class="card col-md-2" [hidden]="!view.showFilter">
+		<div class="card col-md-2" *ngIf="view.showFilter">
 
 			<div class="card-header">
 				<!--<h3>Search</h3>-->
@@ -85,13 +85,13 @@
 					</div>
 				</div>
 
-				<div [hidden]="!view.showAdvanced">
+				<div *ngIf="view.showAdvanced">
 					<div class="form-group">
 						<label for="transactionType" class="control-label">Type:</label>
 						<select id="transactionType" class="form-control"><option>All Transactions</option></select>
 					</div>
 
-					<div [hidden]="!view.showDrafts">
+					<div *ngIf="view.showDrafts">
 						<div class="form-group">
 							<label for="transactionType" class="control-label">Drafts From:</label>
 							<input type=number class="form-control" id=draftFrom size="13" maxlength="13" placeholder="0" [disabled]="!view.showDrafts"/>
@@ -112,7 +112,7 @@
 						</select>
 					</div>
 
-					<div [hidden]="toolbar.searchAmountType == 0">
+					<div *ngIf="toolbar.searchAmountType != 0">
 						<div class="form-group">
 							<label for="transactionType" class="control-label">Amt:</label>
 							<input type="number" class="form-control" size="13" maxlength="13" placeholder="0.00" [disabled]="toolbar.searchAmountType == 0"/>
