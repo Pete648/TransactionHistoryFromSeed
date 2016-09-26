@@ -12,9 +12,9 @@ export class TransactionHistoryService {
     // return the result of .then which is a promise
     getMessages(): Promise<Object> { return this.episysService.receiveMessages("serviceName", "methodName", "args").then((messages) => this.getFilteredMessages(messages)); }
 
-    getFilteredMessages(messages) {
+    getFilteredMessages(messages:any) {
         return {
-            $items: messages.$items.filter((message) => message.Action == "AddSLTranHist")
+            $items: messages.$items.filter((message:any) => message.Action == "AddSLTranHist")
         };
     }
 }

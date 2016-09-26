@@ -12,7 +12,7 @@ import {
 import {
   RouterTestingModule
 } from '@angular/router/testing';
-import { TransactionHistoryCmponent } from './transaction-history.component';
+import { TransactionHistoryComponent } from './transaction-history.component';
 //import { HomeComponent } from './home/home.component';
 //import { AboutComponent } from './about/about.component';
 //import { ToolbarComponent } from './shared/toolbar/toolbar.component';
@@ -50,7 +50,7 @@ export function main() {
 //          });
 //      }));
 //  });
-//}
+}
 
 @Component({
   selector: 'test-cmp',

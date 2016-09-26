@@ -1,5 +1,5 @@
 {
-  "name": "angular2-seed",
+  "name": "transaction-history-from-seed",
   "version": "0.0.0",
   "description": "Modular seed project for Angular 2 apps with fast, statically typed build",
   "repository": {
@@ -138,6 +138,7 @@
     "@angular/platform-browser": "2.0.0",
     "@angular/platform-browser-dynamic": "2.0.0",
     "@angular/router": "3.0.0",
+    "angular2-service-worker": "^0.1.13",
     "bootstrap": "^3.3.7",
     "bootstrap-datepicker": "^1.6.4",
     "core-js": "^2.4.0",

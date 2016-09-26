@@ -59,23 +59,29 @@ export class TransactionHistoryComponent implements OnInit, AfterViewInit {
 
 		var toolbar = this.toolbar;
 
-		// it appears that somewhere in bootstrap-datepicker a datepicker function
-		// is added to our elements that have the data-provide="datepicker" attribute
-		// calling that method appears to be the only way to set properties on the
+        // jQuery maintains its own object for DOM elements it references.
+        // calling $('xxxx') returns that jQuery object
+        // somewhere in bootstrap-datepicker a datepicker function 
+		// is added to those jQuery objects in our DOM that have the data-provide="datepicker" attribute.
+		// calling that function appears to be the only way to set properties on the
 		// datepicker
 
-		$('#fromDate').datepicker({ autoclose: true });
-		$('#fromDate').datepicker().on('changeDate', e => toolbar.setFromDate(e.date));
-		$('#fromDate').datepicker('update', toolbar.fromDate);
+        var fromDate: any = $('#fromDate');         // type ElementFinder
 
-		$('#toDate').datepicker({ autoclose: true });
-		$('#toDate').datepicker().on('changeDate', e => toolbar.setToDate(e.date));
-		$('#toDate').datepicker('update', toolbar.toDate);
+        fromDate.datepicker({ autoclose: true });
+        fromDate.datepicker().on('changeDate', (e:any) => toolbar.setFromDate(e.date));
+        fromDate.datepicker('update', toolbar.fromDate);
+
+        var toDate: any = $('#toDate');           // type ElementFinder
+
+        toDate.datepicker({ autoclose: true });
+        toDate.datepicker().on('changeDate', (e:any) => toolbar.setToDate(e.date));
+        toDate.datepicker('update', toolbar.toDate);
 	}
 
 	view = new View();
 	toolbar = new Toolbar();
-	messages = {};
+	messages:any = {};
 
 	getMessages(): void {
 

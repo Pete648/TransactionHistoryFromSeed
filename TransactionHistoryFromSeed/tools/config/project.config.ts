@@ -24,6 +24,7 @@ export class ProjectConfig extends SeedConfig {
 	  { src: 'bootstrap/dist/js/bootstrap.min.js', inject: 'libs' },
 	  { src: 'bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js', inject: 'libs' },
 	  { src: 'bootstrap/dist/css/bootstrap.min.css', inject: true }, // inject into css section (requires that glyphicons-halflings-regular.woff2 be in a sibling folder named fonts
+//      { src: 'bootstrap/dist/fonts/glyphicons-halflings-regular.woff2', inject: true },       // this doesn't work
 	  { src: 'bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css', inject: true }
 	        // {src: 'lodash/lodash.min.js', inject: 'libs'},
     ];
