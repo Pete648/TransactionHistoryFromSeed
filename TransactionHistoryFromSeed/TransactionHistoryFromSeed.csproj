@@ -125,6 +125,7 @@
     <TypeScriptCompile Include="src\client\app\about\about.module.ts" />
     <TypeScriptCompile Include="src\client\app\about\about.routes.ts" />
     <TypeScriptCompile Include="src\client\app\about\index.ts" />
+    <TypeScriptCompile Include="src\client\app\toolbar.ts" />
     <TypeScriptCompile Include="src\client\app\transaction-history.component.ts" />
     <TypeScriptCompile Include="src\client\app\transaction-history.component.e2e-spec.ts" />
     <TypeScriptCompile Include="src\client\app\transaction-history.component.spec.ts" />

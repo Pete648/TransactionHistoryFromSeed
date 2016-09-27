@@ -2,6 +2,7 @@
 
 import { EpisysServerService } from './episys-server.service';
 import { MockEpisysServerService } from './mock-episys-server.service';
+import { Toolbar } from './toolbar';
 
 @Injectable()
 export class TransactionHistoryService {
@@ -10,7 +11,7 @@ export class TransactionHistoryService {
 //    constructor(private episysService: EpisysServerService) { }
 
     // return the result of .then which is a promise
-    getMessages(): Promise<Object> { return this.episysService.receiveMessages("serviceName", "methodName", "args").then((messages) => this.getFilteredMessages(messages)); }
+    getMessages(toolbar: Toolbar): Promise<Object> { return this.episysService.receiveMessages("serviceName", "methodName", "args", toolbar).then((messages) => this.getFilteredMessages(messages)); }
 
     getFilteredMessages(messages:any) {
         return {
