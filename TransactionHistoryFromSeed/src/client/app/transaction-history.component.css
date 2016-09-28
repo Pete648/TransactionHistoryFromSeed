@@ -24,6 +24,21 @@
 
 /*table column styles*/
 
+.jha-left {
+	text-align: left;
+	font-weight: bold;
+}
+
+.jha-left-bold {
+	text-align: left;
+	font-weight: bold;
+}
+
+.jha-right-bold {
+	text-align: right;
+	font-weight: bold;
+}
+
 .jha-text {
 	text-align: left;
 }
