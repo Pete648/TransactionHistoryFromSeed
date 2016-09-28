@@ -18,7 +18,8 @@
 				            aria-expanded="true" aria-controls="inputsCard">
 					<span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
 				</button>-->
-				<button type="button" class="btn navbar-btn" title="Toggle Detail Mode">
+				<button type="button" class="btn navbar-btn" title="Toggle Detail Mode"
+						(click)="view.showDetail = !view.showDetail">
 					<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
 				</button>
 				<button type="button" class="btn navbar-btn" title="Print">
@@ -163,18 +164,13 @@
 
 						<!--Detail-->
 
-						<tr *ngIf="message.detail && message.symMessage.CmtFlag != '1'" (click)="onMessageClick(index)">
+						<tr *ngIf="(view.showDetail || message.showDetail) && message.symMessage.CmtFlag != '1'" (click)="onMessageClick(index)">
 							<td colspan="10">
-								<table class="table table-condensed table-hover">
-									<tr>
-										<td class="jha-date">{{message.symMessage.PostDate | jhaDateString }}</td>
-										<td class="jha-text">{{message.symMessage.IDType == '0' ? 'S' : 'L'}} {{message.ID}}</td>
-										<td class="jha-date">{{message.symMessage.EffDate | jhaDateString}}</td>
-									</tr>
-									<tr>
-										<td class="jha-text">{{message.symMessage.Tran }}</td>
-										<td class="jha-money">{{message.symMessage.TranAmount | jhaMoney | number:'1.2-2' }}</td>
-										<td class="jha-money">{{message.symMessage.BalChg | jhaMoney | number:'1.2-2' }}</td>
+								<table class="table table-condensed table-hover"
+									   *ngFor="let detailRow of message.detailRows">
+									<tr *ngFor="let detailColumn of detailRow.detailColumns">
+										<td class="jha-text">{{detailColumn.description}}</td>
+										<td class="jha-text">{{detailColumn.value}}</td>
 									</tr>
 								</table>
 							</td>

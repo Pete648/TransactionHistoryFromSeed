@@ -12,7 +12,8 @@ import { MessageWrapper } from './message-wrapper';
 class View {
 	showAdvanced: boolean = false;
 	showDrafts: boolean = false;
-	showFilter: boolean = true;
+    showFilter: boolean = true;
+    showDetail: boolean = false;
 }
 
 @Component({
@@ -56,14 +57,14 @@ export class TransactionHistoryComponent implements OnInit, AfterViewInit {
 	toolbar = new Toolbar();
 	messages: MessageWrapper[] = [];
 
-	onMessageClick(index: any): void {
-		this.messages[index].detail = !this.messages[index].detail;
+    onMessageClick(index: any): void {
 
-		// we need to change the messages property
-		// itself in order for the refresh to occur
-		var temp = this.messages;
-		this.messages = null;
-		this.messages = temp;
+        // create a new message object with the detail flag
+        // flipped.  We need to change the object reference
+        // itself in order for angular to recognize the change
+
+        let message = this.messages[index];
+        this.messages[index] = new MessageWrapper(!message.showDetail, message.symMessage);
 	}
 
 	getMessages(): void {
