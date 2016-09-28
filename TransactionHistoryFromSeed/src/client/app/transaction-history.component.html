@@ -147,23 +147,41 @@
 							<th class="jha-text jha-column-heading">Description</th>
 						</tr>
 					</thead>
-					<tbody *ngFor="let message of messages.$items; let index = index" [ngSwitch]="message.CmtFlag" [class.odd]="index%2 == 1">
-						<tr *ngSwitchDefault>
-							<td class="jha-date">{{message.PostDate | jhaDateString }}</td>
-							<td class="jha-text">{{message.IDType == '0' ? 'S' : 'L'}} {{message.ID}}</td>
-							<td class="jha-date">{{message.EffDate | jhaDateString}}</td>
-							<td class="jha-text">{{message.Tran }}</td>
-							<td class="jha-money">{{message.TranAmount | jhaMoney | number:'1.2-2' }}</td>
-							<td class="jha-money">{{message.BalChg | jhaMoney | number:'1.2-2' }}</td>
-							<td class="jha-money">{{message.IntPen | jhaMoney | number:'1.2-2' }}</td>
-							<td class="jha-money">{{message.Fee | jhaMoney | number:'1.2-2' }}</td>
-							<td class="jha-money">{{message.NewBal | jhaMoney | number:'1.2-2' }}</td>
-							<td class="jha-text">{{message.description}}</td>
+					<tbody *ngFor="let message of messages; let index = index" [class.odd]="index%2 == 1">
+						<tr *ngIf="message.symMessage.CmtFlag != '1'" (click)="onMessageClick(index)">
+							<td class="jha-date">{{message.symMessage.PostDate | jhaDateString }}</td>
+							<td class="jha-text">{{message.symMessage.IDType == '0' ? 'S' : 'L'}} {{message.ID}}</td>
+							<td class="jha-date">{{message.symMessage.EffDate | jhaDateString}}</td>
+							<td class="jha-text">{{message.symMessage.Tran }}</td>
+							<td class="jha-money">{{message.symMessage.TranAmount | jhaMoney | number:'1.2-2' }}</td>
+							<td class="jha-money">{{message.symMessage.BalChg | jhaMoney | number:'1.2-2' }}</td>
+							<td class="jha-money">{{message.symMessage.IntPen | jhaMoney | number:'1.2-2' }}</td>
+							<td class="jha-money">{{message.symMessage.Fee | jhaMoney | number:'1.2-2' }}</td>
+							<td class="jha-money">{{message.symMessage.NewBal | jhaMoney | number:'1.2-2' }}</td>
+							<td class="jha-text">{{message.symMessage.description}}</td>
 						</tr>
-<!--						<tr [ngSwitchWhen]="1">-->
-						<tr *ngSwitchCase="'1'">
+
+						<!--Detail-->
+
+						<tr *ngIf="message.detail && message.symMessage.CmtFlag != '1'" (click)="onMessageClick(index)">
+							<td colspan="10">
+								<table class="table table-condensed table-hover">
+									<tr>
+										<td class="jha-date">{{message.symMessage.PostDate | jhaDateString }}</td>
+										<td class="jha-text">{{message.symMessage.IDType == '0' ? 'S' : 'L'}} {{message.ID}}</td>
+										<td class="jha-date">{{message.symMessage.EffDate | jhaDateString}}</td>
+									</tr>
+									<tr>
+										<td class="jha-text">{{message.symMessage.Tran }}</td>
+										<td class="jha-money">{{message.symMessage.TranAmount | jhaMoney | number:'1.2-2' }}</td>
+										<td class="jha-money">{{message.symMessage.BalChg | jhaMoney | number:'1.2-2' }}</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr *ngIf="message.symMessage.CmtFlag == '1'">
 							<td colspan="3"></td>
-							<td colspan="7" class="jha-comment">{{message.Comment}}</td>
+							<td colspan="7" class="jha-comment">{{message.symMessage.Comment}}</td>
 						</tr>
 					</tbody>
 

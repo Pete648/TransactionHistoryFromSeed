@@ -79,6 +79,7 @@
     <Content Include="LICENSE" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <TypeScriptCompile Include="src\client\app\message-wrapper.ts" />
     <Content Include="src\client\assets\data.json" />
     <Content Include="src\client\tsconfig.json" />
     <Content Include="tools\manual_typings\seed\clean.tmp" />

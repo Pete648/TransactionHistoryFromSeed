@@ -7,6 +7,7 @@ import { Config} from './shared/index';
 
 import { TransactionHistoryService } from './transaction-history.service';
 import { Toolbar } from './toolbar';
+import { MessageWrapper } from './message-wrapper';
 
 class View {
 	showAdvanced: boolean = false;
@@ -21,7 +22,6 @@ class View {
 	styleUrls: ['transaction-history.component.css'],
 	providers: [TransactionHistoryService]      // only used in this component
 })
-
 export class TransactionHistoryComponent implements OnInit, AfterViewInit {
 	constructor(private transactionHistoryService: TransactionHistoryService) {
 		console.log('Environment config', Config);
@@ -54,12 +54,33 @@ export class TransactionHistoryComponent implements OnInit, AfterViewInit {
 
 	view = new View();
 	toolbar = new Toolbar();
-	messages:any = {};
+	messages: MessageWrapper[] = [];
+
+	onMessageClick(index: any): void {
+		this.messages[index].detail = !this.messages[index].detail;
+
+		// we need to change the messages property
+		// itself in order for the refresh to occur
+		var temp = this.messages;
+		this.messages = null;
+		this.messages = temp;
+	}
 
 	getMessages(): void {
 
-        this.transactionHistoryService.getMessages(this.toolbar).then(
-			messages => this.messages = messages);
+		this.transactionHistoryService.getMessages(this.toolbar)
+			.then(
+			(messages: any) => {
+
+				let temp: MessageWrapper[] = [];
+
+				this.messages = [];
+				for (var i: number = 0; i < messages.$items.length; i++) {
+					temp.push(new MessageWrapper(false, messages.$items[i]));
+				}
+
+				this.messages = temp;
+			});
     }
 
 }
