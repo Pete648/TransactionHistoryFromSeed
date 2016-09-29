@@ -166,7 +166,7 @@
 
 						<tr *ngIf="(view.showDetail || message.showDetail) && message.symMessage.CmtFlag != '1'" (click)="onMessageClick(index)">
 							<td colspan="10">
-								<table class="table table-condensed table-hover">
+								<table class="table table-condensed table-hover jha-detail-table">
 									<tbody>
 										<tr *ngFor="let detailRow of message.detailRows; let index = index" [class.odd]="index%2 == 1">
 											<td *ngFor="let detailColumn of detailRow.detailColumns" [class]="detailColumn.className">

@@ -19,14 +19,18 @@
 
 /*for zebra stripe in table*/
 .odd {
-	 background-color: #f9f9f9;
+//	 background-color: #f9f9f9;
+	 background-color: #e9e9e9;
 }
 
 /*table column styles*/
 
+.jha-detail-table {
+	font-size: .8em;
+}
+
 .jha-left {
 	text-align: left;
-	font-weight: bold;
 }
 
 .jha-left-bold {
